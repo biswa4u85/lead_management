@@ -1,0 +1,69 @@
+{
+ "actions": [],
+ "creation": "2021-04-12 22:49:02.881952",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "next_follow_enquiry_date",
+  "lead_progress_status",
+  "lead_status",
+  "add_call_status",
+  "add_suggest_message",
+  "remark"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "next_follow_enquiry_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Follow Enquiry Date"
+  },
+  {
+   "fieldname": "lead_progress_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Lead Progress Status",
+   "options": "followup\npositive\ninterested\nnot interested\nwalk-in\ncall back\nadmission proccess\nadmission done"
+  },
+  {
+   "fieldname": "lead_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Lead Status",
+   "options": "Coming Demo\nComing Admission\nAdm. Done Other\nToday Call Evening\nTime Issue\nAbout Fees\nInterested\nNot Interested\nDemo Completed\nOnline Demo Interested\nOpenAttempted\nNot Received"
+  },
+  {
+   "fieldname": "add_call_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Add Call Status",
+   "options": "Received\nRejected\nCall Not Reachable\nSwitch Off\nDisconnected\nNot Receives"
+  },
+  {
+   "fieldname": "add_suggest_message",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Add Suggest Message",
+   "options": "Call Back Tomorrow\nToday Evening"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Long Text",
+   "label": "Remark"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-04-12 23:28:16.159292",
+ "modified_by": "Administrator",
+ "module": "Lead Management",
+ "name": "Follow Up Leads",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
