@@ -45,7 +45,7 @@
   },
   {
    "fieldname": "add_block",
-   "fieldtype": "Text",
+   "fieldtype": "Data",
    "label": "Add Block"
   },
   {
@@ -78,15 +78,14 @@
   },
   {
    "fieldname": "lead_status",
-   "fieldtype": "Small Text",
+   "fieldtype": "Select",
    "label": "Lead Status",
    "options": "Coming Demo\nComing Admission\nAdm. Done Other\nToday Call Evening\nTime Issue\nAbout Fees\nInterested\nNot Interested\nDemo Completed\nOnline Demo Interested\nOpenAttempted\nNot Received"
   },
   {
    "fieldname": "lead_details",
-   "fieldtype": "Link",
-   "label": "Lead Details",
-   "options": "User"
+   "fieldtype": "Column Break",
+   "label": "Lead Details"
   },
   {
    "fieldname": "qualification",
@@ -102,7 +101,7 @@
   },
   {
    "fieldname": "name_of_collegeorganization",
-   "fieldtype": "Text",
+   "fieldtype": "Data",
    "label": "Name of College/Organization"
   },
   {
@@ -118,14 +117,14 @@
   },
   {
    "fieldname": "follow_up_leads",
-   "fieldtype": "Table",
+   "fieldtype": "Column Break",
    "label": "Follow Up Leads",
    "options": "Follow Up Leads"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-04-12 23:54:34.101044",
+ "modified": "2021-04-18 12:34:28.047486",
  "modified_by": "Administrator",
  "module": "Lead Management",
  "name": "Lead Management",

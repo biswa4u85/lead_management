@@ -4,3 +4,4 @@
 *.swp
 tags
 lead_management/docs/current
+lead_management/templates/pages/lead/node_modules/
