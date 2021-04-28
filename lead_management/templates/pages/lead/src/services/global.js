@@ -1,7 +1,10 @@
 import request from 'umi-request';
 import { message } from 'antd';
-export async function querySettings(DocType) {
-  return request(`/api/resource/DocType/${DocType}`);
+export async function querySettings(params) {
+  return request(`/api/resource/DocType/${params.MODULE_NAME}`);
+}
+export async function queryListAll(params) {
+  return request(`/api/resource/${params.DocType}?fields=["*"]`);
 }
 export async function queryList(DocType, params) {
   try {

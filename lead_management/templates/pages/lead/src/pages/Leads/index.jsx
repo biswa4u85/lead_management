@@ -1,12 +1,12 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, message } from 'antd';
+import { connect } from 'umi';
 import React, { useState, useEffect, useRef } from 'react';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
-import { querySettings, queryList, updateRecord, addRecord, removeRecord } from '@/services/global';
-
+import { queryList, updateRecord, addRecord, removeRecord } from '@/services/global';
 const MODULE_NAME = 'Student'
 /**
  * Adding new
@@ -67,59 +67,53 @@ const handleRemove = async (selectedRows, settings) => {
   }
 };
 
-const LeadList = () => {
+const LeadList = (props) => {
+  const { dispatch, settings } = props
   const [createModalVisible, handleModalVisible] = useState(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef();
-  const [settings, setSettings] = useState(null);
   const [columns, setColumns] = useState([]);
   const [selectedRowsState, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    getSettings()
+    dispatch({
+      type: 'student/fetchSettings',
+      payload: { MODULE_NAME },
+    });
   }, []);
 
-  const getSettings = async () => {
-    try {
-      let settings = await querySettings(MODULE_NAME);
-      setSettings(settings.data)
-      let columns = []
-      if (settings.data.fields) {
-        for (let item of settings.data.fields) {
-          if (item.in_list_view === 1) {
-            columns.push({
-              title: item.label,
-              dataIndex: item.fieldname,
-              valueType: 'textarea',
-            })
-          }
+  useEffect(() => {
+    if (settings && settings.fields) {
+      for (let item of settings.fields) {
+        if (item.in_list_view === 1) {
+          columns.push({
+            title: item.label,
+            dataIndex: item.fieldname,
+            valueType: 'textarea',
+          })
         }
-        columns.push({
-          title: 'Action',
-          dataIndex: 'option',
-          valueType: 'option',
-          render: (_, record) => [
-            <a
-              onClick={() => {
-                handleUpdateModalVisible(true);
-                setStepFormValues(record);
-              }}>Edit</a>,
-            <Divider type="vertical" />,
-            <a
-              onClick={() => {
-                handleRemove(record, settings.data);
-              }}>Remove</a>,
-          ],
-        })
-        setColumns(columns)
       }
-      return true;
-    } catch (error) {
-      message.error('Failed to Fetching, please try again!');
-      return false;
+      columns.push({
+        title: 'Action',
+        dataIndex: 'option',
+        valueType: 'option',
+        render: (_, record) => [
+          <a
+            onClick={() => {
+              handleUpdateModalVisible(true);
+              setStepFormValues(record);
+            }}>Edit</a>,
+          <Divider type="vertical" />,
+          <a
+            onClick={() => {
+              handleRemove(record, settings.data);
+            }}>Remove</a>,
+        ],
+      })
+      setColumns(columns)
     }
-  }
+  }, [settings]);
 
   return (
     <PageContainer>
@@ -157,22 +151,23 @@ const LeadList = () => {
           }} type="primary">Batch delete</Button>
         </FooterToolbar>
       )}
-      <CreateForm onCancel={() => handleModalVisible(false)} modalVisible={createModalVisible}>
-        <ProTable
-          onSubmit={async (value) => {
-            const success = await handleAdd(value, settings);
-            if (success) {
-              handleModalVisible(false);
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
+      <CreateForm
+        onSubmit={async (value) => {
+          const success = await handleAdd(value, settings);
+          if (success) {
+            handleModalVisible(false);
+            if (actionRef.current) {
+              actionRef.current.reload();
             }
-          }}
-          rowKey="key"
-          type="form"
-          columns={columns}
-        />
-      </CreateForm>
+          }
+        }}
+        onCancel={() => handleModalVisible(false)}
+        updateModalVisible={createModalVisible}
+        rowKey="key"
+        type="form"
+        values={{}}
+        settings={settings}
+      />
       {stepFormValues && Object.keys(stepFormValues).length ? (
         <UpdateForm
           onSubmit={async (value) => {
@@ -198,4 +193,7 @@ const LeadList = () => {
   );
 };
 
-export default LeadList;
+export default connect(({ student, loading }) => ({
+  settings: student.settings,
+  loading: loading.models.student,
+}))(LeadList);

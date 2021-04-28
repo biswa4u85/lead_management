@@ -1,6 +1,6 @@
 import { stringify } from 'querystring';
 import { history } from 'umi';
-import { fakeAccountLogin } from '@/services/login';
+import { erpAccountLogin, queryCurrentUser } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { message } from 'antd';
@@ -11,13 +11,15 @@ const Model = {
   },
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(erpAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       }); // Login successfully
-
+      
       if (response.message === 'Logged In') {
+        const json = yield call(queryCurrentUser, payload);
+        console.log(json)
         sessionStorage.setItem('currentUser', JSON.stringify(response));
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
