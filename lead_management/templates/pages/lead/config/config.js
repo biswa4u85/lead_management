@@ -11,7 +11,7 @@ export default defineConfig({
   },
   // history: {type: 'browser'},
   history: { type: 'hash' },
-  publicPath: './lead/dist/',
+  publicPath: process.env.NODE_ENV === 'development' ? '/' :  './lead/dist/',
   locale: {
     default: 'en-EN',
     antd: true,

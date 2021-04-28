@@ -1,122 +1,130 @@
-import React, { useRef, useState, useEffect } from "react";
 import { PlusOutlined } from '@ant-design/icons';
-import { queryListTable } from '@/services/global';
-import { Button, Divider, message, Input, Drawer } from 'antd';
+import { Button, Divider, message } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
-import ProDescriptions from '@ant-design/pro-descriptions';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
-import { connect } from 'umi';
-import styles from './style.less';
+import { querySettings, queryList, updateRecord, addRecord, removeRecord } from '@/services/global';
+
+const MODULE_NAME = 'Student'
 /**
- * 添加节点
+ * Adding new
  *
  * @param fields
  */
 
-const handleAdd = async (fields) => {
-  const hide = message.loading('正在添加');
-
+const handleAdd = async (fields, settings) => {
+  const hide = message.loading('Adding...');
   try {
-    // await addRule({ ...fields });
+    await addRecord({ ...fields }, settings);
     hide();
-    message.success('添加成功');
+    message.success('Added successfully');
     return true;
   } catch (error) {
     hide();
-    message.error('添加失败请重试！');
+    message.error('Failed to add, please try again!');
     return false;
   }
 };
 /**
- * 更新节点
+ * Update node
  *
  * @param fields
  */
 
-const handleUpdate = async (fields) => {
-  const hide = message.loading('正在配置');
+const handleUpdate = async (fields, settings) => {
+  const hide = message.loading('Updateing...');
   try {
-    // await updateRule({
-    //   name: fields.name,
-    //   desc: fields.desc,
-    //   key: fields.key,
-    // });
+    await updateRecord(fields, settings);
     hide();
-    message.success('配置成功');
+    message.success('Update successfully');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('Configuration failed, please try again!');
     return false;
   }
 };
 /**
- * 删除节点
+ * Delete node
  *
  * @param selectedRows
  */
 
-const handleRemove = async (selectedRows) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
-
+const handleRemove = async (selectedRows, settings) => {
+  // console.log(selectedRows, settings)
+  const hide = message.loading('deleting...');
   try {
-    // await removeRule({
-    //   key: selectedRows.map((row) => row.key),
-    // });
+    await removeRecord(selectedRows, settings);
     hide();
-    message.success('删除成功，即将刷新');
+    message.success('Deleted successfully and will be refreshed soon');
     return true;
   } catch (error) {
     hide();
-    message.error('删除失败，请重试');
+    message.error('Deletion failed, please try again');
     return false;
   }
 };
 
-const Leads = (props) => {
-  const { dispatch, settings, list, single } = props;
+const LeadList = () => {
   const [createModalVisible, handleModalVisible] = useState(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef();
-  const [row, setRow] = useState();
+  const [settings, setSettings] = useState(null);
   const [columns, setColumns] = useState([]);
   const [selectedRowsState, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    dispatch({
-      type: 'leads/fetchSettings',
-      payload: {}
-    });
+    getSettings()
   }, []);
 
-  useEffect(() => {
-    let columns = [{
-      title: 'Name',
-      dataIndex: 'name',
-      valueType: 'textarea',
-    }]
-    if (settings.fields) {
-      for (let item of settings.fields) {
-        if (item.in_list_view === 1) {
-          columns.push({
-            title: item.label,
-            dataIndex: item.fieldname,
-            valueType: 'textarea',
-          })
+  const getSettings = async () => {
+    try {
+      let settings = await querySettings(MODULE_NAME);
+      setSettings(settings.data)
+      let columns = []
+      if (settings.data.fields) {
+        for (let item of settings.data.fields) {
+          if (item.in_list_view === 1) {
+            columns.push({
+              title: item.label,
+              dataIndex: item.fieldname,
+              valueType: 'textarea',
+            })
+          }
         }
+        columns.push({
+          title: 'Action',
+          dataIndex: 'option',
+          valueType: 'option',
+          render: (_, record) => [
+            <a
+              onClick={() => {
+                handleUpdateModalVisible(true);
+                setStepFormValues(record);
+              }}>Edit</a>,
+            <Divider type="vertical" />,
+            <a
+              onClick={() => {
+                handleRemove(record, settings.data);
+              }}>Remove</a>,
+          ],
+        })
+        setColumns(columns)
       }
-      setColumns(columns)
+      return true;
+    } catch (error) {
+      message.error('Failed to Fetching, please try again!');
+      return false;
     }
-  }, [settings]);
+  }
 
   return (
     <PageContainer>
-      <ProTable
-        headerTitle={settings.name}
+      {settings && (<ProTable
+        headerTitle={MODULE_NAME}
         actionRef={actionRef}
         rowKey="key"
         search={{
@@ -124,54 +132,37 @@ const Leads = (props) => {
         }}
         toolBarRender={() => [
           <Button type="primary" onClick={() => handleModalVisible(true)}>
-            <PlusOutlined /> Add
+            <PlusOutlined /> Add New
           </Button>,
         ]}
-        request={(params, sorter, filter) => queryListTable(settings.name, { ...params, sorter, filter })}
+        request={(params, sorter, filter) => queryList(MODULE_NAME, { ...params, sorter, filter })}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => setSelectedRows(selectedRows),
         }}
-      />
+      />)}
       {selectedRowsState?.length > 0 && (
         <FooterToolbar
           extra={
             <div>
-              已选择{' '}
-              <a
-                style={{
-                  fontWeight: 600,
-                }}
-              >
-                {selectedRowsState.length}
-              </a>{' '}
-              项&nbsp;&nbsp;
-              <span>
-                服务调用次数总计 {selectedRowsState.reduce((pre, item) => pre + item.name, 0)} 万
-              </span>
+              Chosen{' '}<a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a>{' '}item&nbsp;&nbsp;
+              <span>Total number of service calls {selectedRowsState.reduce((pre, item) => pre + item.nmae, 0)} Ten thousand</span>
             </div>
           }
         >
-          <Button
-            onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
-          >
-            批量删除
-          </Button>
-          <Button type="primary">批量审批</Button>
+          <Button onClick={async () => {
+            // await handleRemove(selectedRowsState, settings);
+            setSelectedRows([]);
+            actionRef.current?.reloadAndRest?.();
+          }} type="primary">Batch delete</Button>
         </FooterToolbar>
       )}
       <CreateForm onCancel={() => handleModalVisible(false)} modalVisible={createModalVisible}>
         <ProTable
           onSubmit={async (value) => {
-            const success = await handleAdd(value);
-
+            const success = await handleAdd(value, settings);
             if (success) {
               handleModalVisible(false);
-
               if (actionRef.current) {
                 actionRef.current.reload();
               }
@@ -185,12 +176,10 @@ const Leads = (props) => {
       {stepFormValues && Object.keys(stepFormValues).length ? (
         <UpdateForm
           onSubmit={async (value) => {
-            const success = await handleUpdate(value);
-
+            const success = await handleUpdate(value, settings);
             if (success) {
               handleUpdateModalVisible(false);
               setStepFormValues({});
-
               if (actionRef.current) {
                 actionRef.current.reload();
               }
@@ -202,38 +191,11 @@ const Leads = (props) => {
           }}
           updateModalVisible={updateModalVisible}
           values={stepFormValues}
+          settings={settings}
         />
       ) : null}
-
-      <Drawer
-        width={600}
-        visible={!!row}
-        onClose={() => {
-          setRow(undefined);
-        }}
-        closable={false}
-      >
-        {row?.name && (
-          <ProDescriptions
-            column={2}
-            title={row?.name}
-            request={async () => ({
-              data: row || {},
-            })}
-            params={{
-              id: row?.name,
-            }}
-            columns={columns}
-          />
-        )}
-      </Drawer>
     </PageContainer>
   );
 };
 
-export default connect(({ leads, loading }) => ({
-  settings: leads.settings,
-  list: leads.data,
-  single: leads.singleData,
-  loading: loading.effects['leads/fetchSearchData'],
-}))(Leads);
+export default LeadList;

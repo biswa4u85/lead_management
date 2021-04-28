@@ -6,27 +6,26 @@ import { EffectsCommandMap, SubscriptionAPI } from 'dva';
 import { match } from 'react-router-dom';
 import { Location, LocationState, History } from 'history';
 
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/models/global';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/models/login';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/models/setting';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/models/user';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/account/center/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/account/settings/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/analysis/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/monitor/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/workplace/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/advanced-form/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/basic-form/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/step-form/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/Leads/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/basic-list/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/card-list/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/applications/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/articles/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/projects/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/profile/advanced/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/profile/basic/model';
-export * from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/User/register/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/models/global';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/models/login';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/models/setting';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/models/user';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/account/center/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/account/settings/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/analysis/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/monitor/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/workplace/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/advanced-form/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/basic-form/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/step-form/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/basic-list/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/card-list/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/applications/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/articles/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/projects/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/profile/advanced/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/profile/basic/model';
+export * from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/User/register/model';
 
 export interface Action<T = any> {
   type: T

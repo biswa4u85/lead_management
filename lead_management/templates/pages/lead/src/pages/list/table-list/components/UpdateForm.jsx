@@ -49,6 +49,8 @@ const UpdateForm = (props) => {
     }
   };
 
+  console.log(formVals)
+  
   const renderContent = () => {
     if (currentStep === 1) {
       return (

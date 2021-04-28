@@ -284,5 +284,8 @@ block?: number
 esbuild?: {
 target?: (string | string[])
 }
+inspectorConfig?: {
+
+}
 [k: string]: any
 }

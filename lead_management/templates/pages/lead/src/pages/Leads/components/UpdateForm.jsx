@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, DatePicker, Input, Modal, Radio, Select, Steps } from 'antd';
 const FormItem = Form.Item;
+import moment from 'moment';
 const { Step } = Steps;
 const { TextArea } = Input;
 const { Option } = Select;
@@ -14,17 +15,33 @@ const formLayout = {
   },
 };
 
+const getSections = (fields) => {
+  let sections = {}
+  let type = null
+  let list = []
+  for (let item of fields) {
+    if (item.fieldtype == 'Section Break') {
+      if (type) {
+        sections[type] = list
+      }
+      if (item.label == undefined) {
+        type = 'General'
+        list = []
+      } else if (item.label in sections === false) {
+        type = item.label
+        list = []
+      }
+    } else {
+      list.push(item)
+    }
+  }
+  return sections
+}
+
 const UpdateForm = (props) => {
-  const [formVals, setFormVals] = useState({
-    name: props.values.name,
-    desc: props.values.desc,
-    key: props.values.key,
-    target: '0',
-    template: '0',
-    type: '1',
-    time: '',
-    frequency: 'month',
-  });
+  const { settings } = props
+  const sections = getSections(settings.fields)
+  const [formVals, setFormVals] = useState(props.values);
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
   const {
@@ -35,14 +52,11 @@ const UpdateForm = (props) => {
   } = props;
 
   const forward = () => setCurrentStep(currentStep + 1);
-
   const backward = () => setCurrentStep(currentStep - 1);
-
   const handleNext = async () => {
     const fieldsValue = await form.validateFields();
     setFormVals({ ...formVals, ...fieldsValue });
-
-    if (currentStep < 2) {
+    if (currentStep < (Object.keys(sections).length - 1)) {
       forward();
     } else {
       handleUpdate({ ...formVals, ...fieldsValue });
@@ -50,163 +64,113 @@ const UpdateForm = (props) => {
   };
 
   const renderContent = () => {
-    if (currentStep === 1) {
-      return (
-        <>
-          <FormItem name="target" label="监控对象">
-            <Select
-              style={{
-                width: '100%',
-              }}
-            >
-              <Option value="0">表一</Option>
-              <Option value="1">表二</Option>
-            </Select>
-          </FormItem>
-          <FormItem name="template" label="规则模板">
-            <Select
-              style={{
-                width: '100%',
-              }}
-            >
-              <Option value="0">规则模板一</Option>
-              <Option value="1">规则模板二</Option>
-            </Select>
-          </FormItem>
-          <FormItem name="type" label="规则类型">
-            <RadioGroup>
-              <Radio value="0">强</Radio>
-              <Radio value="1">弱</Radio>
-            </RadioGroup>
-          </FormItem>
-        </>
-      );
-    }
-
-    if (currentStep === 2) {
-      return (
-        <>
-          <FormItem
-            name="time"
-            label="开始时间"
-            rules={[
-              {
-                required: true,
-                message: '请选择开始时间！',
-              },
-            ]}
-          >
-            <DatePicker
-              style={{
-                width: '100%',
-              }}
-              showTime
-              format="YYYY-MM-DD HH:mm:ss"
-              placeholder="选择开始时间"
-            />
-          </FormItem>
-          <FormItem name="frequency" label="调度周期">
-            <Select
-              style={{
-                width: '100%',
-              }}
-            >
-              <Option value="month">月</Option>
-              <Option value="week">周</Option>
-            </Select>
-          </FormItem>
-        </>
-      );
-    }
-
-    return (
-      <>
-        <FormItem
-          name="name"
-          label="规则名称"
-          rules={[
-            {
-              required: true,
-              message: '请输入规则名称！',
-            },
-          ]}
-        >
-          <Input placeholder="请输入" />
-        </FormItem>
-        <FormItem
-          name="desc"
-          label="规则描述"
-          rules={[
-            {
-              required: true,
-              message: '请输入至少五个字符的规则描述！',
-              min: 5,
-            },
-          ]}
-        >
-          <TextArea rows={4} placeholder="请输入至少五个字符" />
-        </FormItem>
-      </>
-    );
+    return Object.keys(sections).map((item, key) => {
+      if (currentStep === key) {
+        return (
+          <>
+            {sections[item].map((item, key) => {
+              if (item.fieldtype != "Column Break" && item.no_copy === 0 && item.hidden === 0) {
+                console.log(item.fieldtype)
+                if (item.fieldtype == 'Link') {
+                  return <FormItem key={key} name={item.fieldname} label={item.label}>Lnk</FormItem>
+                } else if (item.fieldtype == 'Table') {
+                  return <FormItem key={key} name={item.fieldname} label={item.label}>Table</FormItem>
+                } else if (item.fieldtype == 'Date') {
+                  return <FormItem key={key}
+                    name={item.fieldname}
+                    label={item.label}
+                    initialValue={formVals[item.fieldname] ? moment.utc(formVals[item.fieldname], 'YYYY-MM-DD') : null}
+                    rules={item.reqd ? [
+                      {
+                        required: true,
+                        message: `${item.label} required`,
+                      }
+                    ] : []}
+                  >
+                    <DatePicker
+                      style={{
+                        width: '100%',
+                      }}
+                      format="YYYY-MM-DD"
+                      placeholder={item.label}
+                    />
+                  </FormItem>
+                } else if (item.fieldtype == 'Select') {
+                  let list = String(item.options).split('\n')
+                  return <FormItem key={key}
+                    name={item.fieldname}
+                    label={item.label}
+                    initialValue={formVals[item.fieldname]}
+                    rules={item.reqd ? [
+                      {
+                        required: true,
+                        message: `${item.label} required`,
+                      }
+                    ] : []}
+                  >
+                    <Select style={{ width: '100%' }}>
+                      {list.map((item, key) => <Option key={key} value={item}>{item}</Option>)}
+                    </Select>
+                  </FormItem>
+                } else {
+                  return <FormItem
+                    key={key}
+                    name={item.fieldname}
+                    label={item.label}
+                    initialValue={formVals[item.fieldname]}
+                    rules={item.reqd ? [
+                      {
+                        required: true,
+                        message: `${item.label} required`,
+                      }
+                    ] : []}
+                  >
+                    <Input placeholder={item.label} />
+                  </FormItem>
+                }
+              }
+            })}
+          </>
+        );
+      }
+    })
   };
 
   const renderFooter = () => {
-    if (currentStep === 1) {
+    if (currentStep === 0) {
       return (
         <>
-          <Button
-            style={{
-              float: 'left',
-            }}
-            onClick={backward}
-          >
-            上一步
-          </Button>
-          <Button onClick={() => handleUpdateModalVisible(false, values)}>取消</Button>
-          <Button type="primary" onClick={() => handleNext()}>
-            下一步
-          </Button>
+          <Button onClick={() => handleUpdateModalVisible(false, values)}>Cancel</Button>
+          <Button type="primary" onClick={() => handleNext()}>Next</Button>
         </>
       );
     }
-
-    if (currentStep === 2) {
+    if (currentStep === (Object.keys(sections).length - 1)) {
       return (
         <>
-          <Button
-            style={{
-              float: 'left',
-            }}
-            onClick={backward}
-          >
-            上一步
-          </Button>
-          <Button onClick={() => handleUpdateModalVisible(false, values)}>取消</Button>
-          <Button type="primary" onClick={() => handleNext()}>
-            完成
-          </Button>
+          <Button style={{ float: 'left', }} onClick={backward}>Previous</Button>
+          <Button onClick={() => handleUpdateModalVisible(false, values)}>Cancel</Button>
+          <Button type="primary" onClick={() => handleNext()}>Submit</Button>
         </>
       );
     }
-
     return (
       <>
-        <Button onClick={() => handleUpdateModalVisible(false, values)}>取消</Button>
-        <Button type="primary" onClick={() => handleNext()}>
-          下一步
-        </Button>
+        <Button style={{ float: 'left', }} onClick={backward}>Previous</Button>
+        <Button onClick={() => handleUpdateModalVisible(false, values)}>Cancel</Button>
+        <Button type="primary" onClick={() => handleNext()}>Next</Button>
       </>
     );
   };
 
   return (
     <Modal
-      width={640}
+      width={750}
       bodyStyle={{
         padding: '32px 40px 48px',
       }}
       destroyOnClose
-      title="规则配置"
+      title={"Edit " + settings.name}
       visible={updateModalVisible}
       footer={renderFooter()}
       onCancel={() => handleUpdateModalVisible()}
@@ -218,9 +182,7 @@ const UpdateForm = (props) => {
         size="small"
         current={currentStep}
       >
-        <Step title="基本信息" />
-        <Step title="配置规则属性" />
-        <Step title="设定调度周期" />
+        {Object.keys(sections).map((item, key) => <Step key={key} title={item} />)}
       </Steps>
       <Form
         {...formLayout}

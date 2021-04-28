@@ -1,13 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import initialState from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/.umi/plugin-initial-state/models/initialState';
+import initialState from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/.umi/plugin-initial-state/models/initialState';
 
 // @ts-ignore
-import Dispatcher from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/dispatcher';
+import Dispatcher from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/dispatcher';
 // @ts-ignore
-import Executor from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/executor';
+import Executor from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/executor';
 // @ts-ignore
-import { UmiContext } from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/constant';
+import { UmiContext } from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/plugin-model/lib/helpers/constant';
 
 export const models = { '@@initialState': initialState,  };
 

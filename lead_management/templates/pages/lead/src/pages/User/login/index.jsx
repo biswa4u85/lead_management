@@ -1,13 +1,8 @@
 import {
-  AlipayCircleOutlined,
   LockOutlined,
-  MailOutlined,
-  MobileOutlined,
-  TaobaoCircleOutlined,
   UserOutlined,
-  WeiboCircleOutlined,
 } from '@ant-design/icons';
-import { Alert, Space, message, Tabs } from 'antd';
+import { Alert } from 'antd';
 import React, { useState } from 'react';
 import ProForm, { ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, connect, FormattedMessage } from 'umi';
@@ -28,7 +23,6 @@ const Login = (props) => {
   const { userLogin = {}, submitting } = props;
   const { status, type: loginType } = userLogin;
   const intl = useIntl();
-
   const handleSubmit = (values) => {
     const { dispatch } = props;
     dispatch({
@@ -62,7 +56,7 @@ const Login = (props) => {
           <LoginMessage
             content={intl.formatMessage({
               id: 'pages.login.accountLogin.errorMessage',
-              defaultMessage: '账户或密码错误（admin/ant.design)',
+              defaultMessage: '',
             })}
           />
         )}
@@ -75,7 +69,7 @@ const Login = (props) => {
             }}
             placeholder={intl.formatMessage({
               id: 'pages.login.username.placeholder',
-              defaultMessage: '用户名: admin or user',
+              defaultMessage: '',
             })}
             rules={[
               {
@@ -83,7 +77,7 @@ const Login = (props) => {
                 message: (
                   <FormattedMessage
                     id="pages.login.username.required"
-                    defaultMessage="请输入用户名!"
+                    defaultMessage=""
                   />
                 ),
               },
@@ -97,7 +91,7 @@ const Login = (props) => {
             }}
             placeholder={intl.formatMessage({
               id: 'pages.login.password.placeholder',
-              defaultMessage: '密码: ant.design',
+              defaultMessage: '',
             })}
             rules={[
               {
@@ -105,29 +99,29 @@ const Login = (props) => {
                 message: (
                   <FormattedMessage
                     id="pages.login.password.required"
-                    defaultMessage="请输入密码！"
+                    defaultMessage=""
                   />
                 ),
               },
             ]}
           />
         </>
-        <div
+        {/* <div
           style={{
             marginBottom: 24,
           }}
         >
           <ProFormCheckbox noStyle name="autoLogin">
-            <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
+            <FormattedMessage id="pages.login.rememberMe" defaultMessage="" />
           </ProFormCheckbox>
           <a
             style={{
               float: 'right',
             }}
           >
-            <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
+            <FormattedMessage id="pages.login.forgotPassword" defaultMessage="" />
           </a>
-        </div>
+        </div> */}
       </ProForm>
     </div>
   );

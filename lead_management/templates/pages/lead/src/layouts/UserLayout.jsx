@@ -2,7 +2,7 @@ import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, SelectLang, useIntl, connect, FormattedMessage } from 'umi';
 import React from 'react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 import styles from './UserLayout.less';
 
 const UserLayout = (props) => {
@@ -32,7 +32,6 @@ const UserLayout = (props) => {
         <title>{title}</title>
         <meta name="description" content={title} />
       </Helmet>
-
       <div className={styles.container}>
         <div className={styles.lang}>
           <SelectLang />
@@ -42,19 +41,12 @@ const UserLayout = (props) => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Erptech</span>
               </Link>
             </div>
-            <div className={styles.desc}>
-              <FormattedMessage
-                id="pages.layouts.userLayout.title"
-                defaultMessage="Erptech 是西湖区最具影响力的 Web 设计规范"
-              />
-            </div>
+            {children}
           </div>
-          {children}
         </div>
-        <DefaultFooter />
+        {/* <DefaultFooter /> */}
       </div>
     </HelmetProvider>
   );
