@@ -19,10 +19,12 @@ class Analysis extends Component {
   };
   reqRef = 0;
   timeoutId = 0;
-
   componentDidMount() {
     const { dispatch } = this.props;
     this.reqRef = requestAnimationFrame(() => {
+      dispatch({
+        type: 'dashboardAndanalysis/fetchNew',
+      });
       dispatch({
         type: 'dashboardAndanalysis/fetch',
       });
@@ -96,6 +98,7 @@ class Analysis extends Component {
   render() {
     const { rangePickerValue, salesType, currentTabKey } = this.state;
     const { dashboardAndanalysis, loading } = this.props;
+    console.log(dashboardAndanalysis)
     const {
       visitData,
       visitData2,

@@ -1,5 +1,8 @@
-import request from 'umi-request';
+import request from '@/utils/request';
 import { message } from 'antd';
+export async function queryGlobal(url) {
+  return request(`/api/resource/${url}`);
+}
 export async function querySettings(params) {
   return request(`/api/resource/DocType/${params.MODULE_NAME}`);
 }

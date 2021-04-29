@@ -11,7 +11,7 @@ const SettingModel = {
   state: defaultSettings,
   reducers: {
     changeSetting(state = defaultSettings, { payload }) {
-      console.log(payload)
+      // console.log(payload)
       const { colorWeak, contentWidth } = payload;
       if (state.contentWidth !== contentWidth && window.dispatchEvent) {
         window.dispatchEvent(new Event('resize'));

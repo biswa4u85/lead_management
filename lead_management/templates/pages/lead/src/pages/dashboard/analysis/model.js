@@ -1,4 +1,5 @@
 import { fakeChartData } from './service';
+import { queryGlobal } from '@/services/global';
 const initState = {
   visitData: [],
   visitData2: [],
@@ -15,6 +16,13 @@ const Model = {
   namespace: 'dashboardAndanalysis',
   state: initState,
   effects: {
+    *fetchNew(_, { call, put }) {
+      const response = yield call(queryGlobal, 'Workspace/Education');
+      yield put({
+        type: 'save',
+        payload: response.data,
+      });
+    },
     *fetch(_, { call, put }) {
       const response = yield call(fakeChartData);
       yield put({
@@ -22,7 +30,6 @@ const Model = {
         payload: response,
       });
     },
-
     *fetchSalesData(_, { call, put }) {
       const response = yield call(fakeChartData);
       yield put({
@@ -37,7 +44,6 @@ const Model = {
     save(state, { payload }) {
       return { ...state, ...payload };
     },
-
     clear() {
       return initState;
     },

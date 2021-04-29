@@ -39,5 +39,8 @@ const errorHandler = (error) => {
 const request = extend({
   errorHandler,
   credentials: 'include',
+  // headers: {
+  //   'Authorization': 'token 85f3b52a1ddcae2:06d47d96a013d82',
+  // },
 });
 export default request;

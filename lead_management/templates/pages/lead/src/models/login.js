@@ -3,7 +3,7 @@ import { stringify } from 'qs';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
-import { erpAccountLogin, queryCurrentUser } from '@/services/others';
+import { erpAccountLogin, getLoggedUser, queryCurrentUser } from '@/services/others';
 
 export default {
   namespace: 'login',
@@ -19,36 +19,35 @@ export default {
     *login({ payload }, { call, put }) {
       const response = yield call(erpAccountLogin, payload);
       if (response && response.message === 'Logged In') {
-        const json = yield call(queryCurrentUser, response);
-        if (json && json.data) {
-          sessionStorage.setItem('currentUser', JSON.stringify(json.data));
-          yield put({
-            type: 'saveCurrentUser',
-            payload: json.data,
-          });
-          yield put({
-            type: 'changeLoginStatus',
-            payload: {
-              status: false,
-              currentAuthority: json.data.username,
-            },
-          });
-          reloadAuthorized();
-          const urlParams = new URL(window.location.href);
-          const params = getPageQuery();
-          let { redirect } = params;
-          if (redirect) {
-            const redirectUrlParams = new URL(redirect);
-            if (redirectUrlParams.origin === urlParams.origin) {
-              redirect = redirect.substr(urlParams.origin.length);
-              if (redirect.match(/^\/.*#/)) {
-                redirect = redirect.substr(redirect.indexOf('#') + 1);
+        const json = yield call(getLoggedUser);
+        if (json && json.message) {
+          sessionStorage.setItem('user', JSON.stringify(json));
+          const userDetails = yield call(queryCurrentUser, json);
+          if (userDetails && userDetails.data) {
+            yield put({
+              type: 'changeLoginStatus',
+              payload: {
+                status: false,
+                currentAuthority: userDetails.data.username,
+              },
+            });
+            reloadAuthorized();
+            const urlParams = new URL(window.location.href);
+            const params = getPageQuery();
+            let { redirect } = params;
+            if (redirect) {
+              const redirectUrlParams = new URL(redirect);
+              if (redirectUrlParams.origin === urlParams.origin) {
+                redirect = redirect.substr(urlParams.origin.length);
+                if (redirect.match(/^\/.*#/)) {
+                  redirect = redirect.substr(redirect.indexOf('#') + 1);
+                }
+              } else {
+                redirect = null;
               }
-            } else {
-              redirect = null;
             }
+            yield put(routerRedux.replace('/'));
           }
-          yield put(routerRedux.replace('/'));
         }
       }
     },
@@ -76,10 +75,15 @@ export default {
       }
     },
 
-    *fetchCurrent(_, { call, put }) {
-      const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      // redirect
-      if (!currentUser) {
+    *fetchCurrent({ payload }, { call, put }) {
+      const user = JSON.parse(sessionStorage.getItem('user'));
+      const json = yield call(queryCurrentUser, user);
+      if (json && json.data) {
+        yield put({
+          type: 'saveCurrentUser',
+          payload: json.data,
+        });
+      } else {
         yield put(
           routerRedux.replace({
             pathname: '/user/login',
@@ -89,10 +93,6 @@ export default {
           }),
         );
       }
-      yield put({
-        type: 'saveCurrentUser',
-        payload: currentUser,
-      });
     },
   },
 

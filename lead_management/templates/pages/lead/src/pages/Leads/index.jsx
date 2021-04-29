@@ -7,7 +7,7 @@ import ProTable from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { queryList, updateRecord, addRecord, removeRecord } from '@/services/global';
-const MODULE_NAME = 'Student'
+const MODULE_NAME = 'Exam Application'
 /**
  * Adding new
  *
