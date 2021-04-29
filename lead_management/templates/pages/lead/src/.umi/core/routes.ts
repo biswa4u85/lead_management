@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { ApplyPluginsType, dynamic } from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/runtime';
+import { ApplyPluginsType, dynamic } from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/runtime';
 import * as umiExports from './umiExports';
 import { plugin } from './plugin';
 import LoadingComponent from '@/components/PageLoading/index';
@@ -9,16 +9,16 @@ export function getRoutes() {
   const routes = [
   {
     "path": "/",
-    "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BlankLayout' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/layouts/BlankLayout'), loading: LoadingComponent}),
+    "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BlankLayout' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/layouts/BlankLayout'), loading: LoadingComponent}),
     "routes": [
       {
         "path": "/user",
-        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__UserLayout' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/layouts/UserLayout'), loading: LoadingComponent}),
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__UserLayout' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/layouts/UserLayout'), loading: LoadingComponent}),
         "routes": [
           {
             "path": "/user/login",
             "name": "login",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__User__login' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/User/login'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__User__login' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/User/login'), loading: LoadingComponent}),
             "exact": true
           },
           {
@@ -30,30 +30,30 @@ export function getRoutes() {
             "name": "register-result",
             "icon": "smile",
             "path": "/user/register-result",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__register-result' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/user/register-result'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__register-result' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/user/register-result'), loading: LoadingComponent}),
             "exact": true
           },
           {
             "name": "register",
             "icon": "smile",
             "path": "/user/register",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__register' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/user/register'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__register' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/user/register'), loading: LoadingComponent}),
             "exact": true
           },
           {
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/404'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/404'), loading: LoadingComponent}),
             "exact": true
           }
         ]
       },
       {
         "path": "/",
-        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BasicLayout' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/layouts/BasicLayout'), loading: LoadingComponent}),
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'layouts__BasicLayout' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/layouts/BasicLayout'), loading: LoadingComponent}),
         "Routes": [
           "src/pages/Authorized"
         ],
         "authority": [
-          "admin",
+          "administrator",
           "user"
         ],
         "routes": [
@@ -76,21 +76,21 @@ export function getRoutes() {
                 "name": "analysis",
                 "icon": "smile",
                 "path": "/dashboard/analysis",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__analysis' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/analysis'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__analysis' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/analysis'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "monitor",
                 "icon": "smile",
                 "path": "/dashboard/monitor",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__monitor' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/monitor'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__monitor' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/monitor'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "workplace",
                 "icon": "smile",
                 "path": "/dashboard/workplace",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__workplace' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/workplace'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__dashboard__workplace' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/dashboard/workplace'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -109,7 +109,7 @@ export function getRoutes() {
                 "name": "list",
                 "icon": "smile",
                 "path": "/lead/list",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Leads' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/Leads'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Leads' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/Leads'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -128,21 +128,21 @@ export function getRoutes() {
                 "name": "basic-form",
                 "icon": "smile",
                 "path": "/form/basic-form",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__basic-form' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/basic-form'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__basic-form' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/basic-form'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "step-form",
                 "icon": "smile",
                 "path": "/form/step-form",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__step-form' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/step-form'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__step-form' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/step-form'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "advanced-form",
                 "icon": "smile",
                 "path": "/form/advanced-form",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__advanced-form' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/form/advanced-form'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__form__advanced-form' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/form/advanced-form'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -155,7 +155,7 @@ export function getRoutes() {
               {
                 "path": "/list/search",
                 "name": "search-list",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search'), loading: LoadingComponent}),
                 "routes": [
                   {
                     "path": "/list/search",
@@ -166,21 +166,21 @@ export function getRoutes() {
                     "name": "articles",
                     "icon": "smile",
                     "path": "/list/search/articles",
-                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__articles' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/articles'), loading: LoadingComponent}),
+                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__articles' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/articles'), loading: LoadingComponent}),
                     "exact": true
                   },
                   {
                     "name": "projects",
                     "icon": "smile",
                     "path": "/list/search/projects",
-                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__projects' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/projects'), loading: LoadingComponent}),
+                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__projects' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/projects'), loading: LoadingComponent}),
                     "exact": true
                   },
                   {
                     "name": "applications",
                     "icon": "smile",
                     "path": "/list/search/applications",
-                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__applications' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/search/applications'), loading: LoadingComponent}),
+                    "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__search__applications' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/search/applications'), loading: LoadingComponent}),
                     "exact": true
                   }
                 ]
@@ -194,21 +194,21 @@ export function getRoutes() {
                 "name": "table-list",
                 "icon": "smile",
                 "path": "/list/table-list",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__table-list' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/table-list'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__table-list' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/table-list'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "basic-list",
                 "icon": "smile",
                 "path": "/list/basic-list",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__basic-list' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/basic-list'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__basic-list' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/basic-list'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "card-list",
                 "icon": "smile",
                 "path": "/list/card-list",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__card-list' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/list/card-list'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__list__card-list' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/list/card-list'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -227,14 +227,14 @@ export function getRoutes() {
                 "name": "basic",
                 "icon": "smile",
                 "path": "/profile/basic",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__profile__basic' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/profile/basic'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__profile__basic' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/profile/basic'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "advanced",
                 "icon": "smile",
                 "path": "/profile/advanced",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__profile__advanced' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/profile/advanced'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__profile__advanced' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/profile/advanced'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -253,14 +253,14 @@ export function getRoutes() {
                 "name": "success",
                 "icon": "smile",
                 "path": "/result/success",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__result__success' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/result/success'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__result__success' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/result/success'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "fail",
                 "icon": "smile",
                 "path": "/result/fail",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__result__fail' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/result/fail'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__result__fail' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/result/fail'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -279,21 +279,21 @@ export function getRoutes() {
                 "name": "403",
                 "icon": "smile",
                 "path": "/exception/403",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__403' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/exception/403'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__403' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/exception/403'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "404",
                 "icon": "smile",
                 "path": "/exception/404",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__404' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/exception/404'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__404' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/exception/404'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "500",
                 "icon": "smile",
                 "path": "/exception/500",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__500' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/exception/500'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__exception__500' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/exception/500'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -312,14 +312,14 @@ export function getRoutes() {
                 "name": "center",
                 "icon": "smile",
                 "path": "/account/center",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__center' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/account/center'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__center' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/account/center'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "settings",
                 "icon": "smile",
                 "path": "/account/settings",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__settings' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/account/settings'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__settings' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/account/settings'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
@@ -338,27 +338,27 @@ export function getRoutes() {
                 "name": "flow",
                 "icon": "smile",
                 "path": "/editor/flow",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__flow' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/editor/flow'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__flow' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/editor/flow'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "mind",
                 "icon": "smile",
                 "path": "/editor/mind",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__mind' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/editor/mind'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__mind' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/editor/mind'), loading: LoadingComponent}),
                 "exact": true
               },
               {
                 "name": "koni",
                 "icon": "smile",
                 "path": "/editor/koni",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__koni' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/editor/koni'), loading: LoadingComponent}),
+                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__editor__koni' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/editor/koni'), loading: LoadingComponent}),
                 "exact": true
               }
             ]
           },
           {
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/src/pages/404'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/src/pages/404'), loading: LoadingComponent}),
             "exact": true
           }
         ]

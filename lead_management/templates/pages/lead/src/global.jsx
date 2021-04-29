@@ -79,7 +79,6 @@ if (pwa) {
 } else if ('serviceWorker' in navigator && isHttps) {
   // unregister service worker
   const { serviceWorker } = navigator;
-
   if (serviceWorker.getRegistrations) {
     serviceWorker.getRegistrations().then((sws) => {
       sws.forEach((sw) => {

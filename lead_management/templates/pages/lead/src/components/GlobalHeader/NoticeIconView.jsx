@@ -9,7 +9,6 @@ import styles from './index.less';
 class GlobalHeaderRight extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-
     if (dispatch) {
       dispatch({
         type: 'global/fetchNotices',
@@ -82,11 +81,9 @@ class GlobalHeaderRight extends Component {
     const unreadMsg = {};
     Object.keys(noticeData).forEach((key) => {
       const value = noticeData[key];
-
       if (!unreadMsg[key]) {
         unreadMsg[key] = 0;
       }
-
       if (Array.isArray(value)) {
         unreadMsg[key] = value.filter((item) => !item.read).length;
       }
@@ -142,8 +139,8 @@ class GlobalHeaderRight extends Component {
   }
 }
 
-export default connect(({ user, global, loading }) => ({
-  currentUser: user.currentUser,
+export default connect(({ login, global, loading }) => ({
+  currentUser: login,
   collapsed: global.collapsed,
   fetchingMoreNotices: loading.effects['global/fetchMoreNotices'],
   fetchingNotices: loading.effects['global/fetchNotices'],

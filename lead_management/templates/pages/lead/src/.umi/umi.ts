@@ -5,8 +5,8 @@ import '../global.jsx';
 import { plugin } from './core/plugin';
 import './core/pluginRegister';
 import { createHistory } from './core/history';
-import { ApplyPluginsType } from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/runtime';
-import { renderClient } from 'C:/Users/BiswajitSahoo/Sites/Docker/frappe_docker/development/frappe-bench-v13/apps/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/renderer-react/dist/index.js';
+import { ApplyPluginsType } from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/runtime';
+import { renderClient } from '/Users/biswa/Sites/erp/lead_management/lead_management/templates/pages/lead/node_modules/@umijs/renderer-react/dist/index.js';
 import { getRoutes } from './core/routes';
 
 

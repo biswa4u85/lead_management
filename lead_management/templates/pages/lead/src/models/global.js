@@ -1,4 +1,4 @@
-import { queryNotices } from '@/services/user';
+import { queryNotices } from '@/services/others';
 const GlobalModel = {
   namespace: 'global',
   state: {

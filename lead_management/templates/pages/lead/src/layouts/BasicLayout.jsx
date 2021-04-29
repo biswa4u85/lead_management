@@ -74,7 +74,7 @@ const BasicLayout = (props) => {
   useEffect(() => {
     if (dispatch) {
       dispatch({
-        type: 'user/fetchCurrent',
+        type: 'login/fetchCurrent',
       });
     }
   }, []);
@@ -154,11 +154,13 @@ const BasicLayout = (props) => {
       </ProLayout>
       <SettingDrawer
         settings={settings}
-        onSettingChange={(config) =>
+        onSettingChange={(config) =>{
+          console.log(config)
           dispatch({
             type: 'settings/changeSetting',
             payload: config,
           })
+        }
         }
       />
     </>
