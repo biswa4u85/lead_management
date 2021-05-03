@@ -155,7 +155,6 @@ const BasicLayout = (props) => {
       <SettingDrawer
         settings={settings}
         onSettingChange={(config) =>{
-          // console.log(config)
           dispatch({
             type: 'settings/changeSetting',
             payload: config,

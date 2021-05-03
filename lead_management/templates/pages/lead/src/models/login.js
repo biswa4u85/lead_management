@@ -4,10 +4,10 @@ import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
 import { erpAccountLogin, getLoggedUser, queryCurrentUser } from '@/services/others';
+import defaultSettings from '../../config/defaultSettings';
 
 export default {
   namespace: 'login',
-
   state: {
     confirmationResult: null,
     status: undefined,
@@ -28,7 +28,7 @@ export default {
               type: 'changeLoginStatus',
               payload: {
                 status: false,
-                currentAuthority: userDetails.data.username,
+                currentAuthority: userDetails.data.role_profile_name,
               },
             });
             reloadAuthorized();
@@ -53,7 +53,7 @@ export default {
     },
 
     *logout(_, { put }) {
-      sessionStorage.setItem('currentUser', JSON.stringify(null));
+      sessionStorage.setItem('user', JSON.stringify(null));
       yield put({
         type: 'changeLoginStatus',
         payload: {

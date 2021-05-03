@@ -9,5 +9,9 @@ const proSettings = {
   title: 'Lead Plus',
   pwa: false,
   iconfontUrl: '',
+  groups: {
+    'Student Role': true,
+    'Employee Role': true
+  },
 };
 export default proSettings;
